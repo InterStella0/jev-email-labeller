@@ -1,0 +1,15 @@
+# Data volume (SQLite DB, heartbeat)
+/data/
+.env
+
+# Rust
+/backend/target/
+
+# Frontend
+/frontend/node_modules/
+/frontend/dist/
+
+# Editors
+.idea/
+.vscode/
+*.swp

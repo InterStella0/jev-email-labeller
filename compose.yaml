@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./backend
+    image: jev-labeller-backend
+    env_file: .env
+    volumes:
+      # SQLite database and the worker heartbeat. On Linux: `mkdir -p data && sudo chown 10001:10001 data`.
+      - ./data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    image: jev-labeller-frontend
+    ports:
+      - "${PORT:-8080}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
